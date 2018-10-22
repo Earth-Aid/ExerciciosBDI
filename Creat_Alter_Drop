@@ -1,0 +1,102 @@
+-- Exercícios de BD I: Create, Alter e Drop
+-- Anne Caroline Silva 20141BSI0345
+-- Data: 22/10/2018
+
+CREATE TABLE PROJETO (
+	numero int, 
+	nome varchar(50),
+	localizacao varchar(50)
+)
+
+CREATE TABLE EMPREGADO (
+	rg varchar(7), 
+	nome varchar(50),
+	cpf varchar(11),
+	depto varchar(20),
+	rg_supervisor varchar(11),
+	salario float,
+	dat_init_sal Date
+)
+
+CREATE TABLE DEPARTAMENTO (
+	numero int, 
+	nome varchar(20),
+	rg_gerente varchar(7)
+)
+
+CREATE TABLE DEPENDENTE (
+	codigo int, 
+	rg_responsável varchar(7),
+	nome_dependente varchar(50),
+	nascimento Date,
+	relacao varchar(15), 
+	sexo char
+)
+
+CREATE TABLE EMPREGADO_PROJETO (
+	codigo int,
+	rg_empregado varchar(7),
+	numero_projeto int,
+	horas time
+)
+
+CREATE TABLE DEPARTAMENTO_PROJETO (
+	codigo int, 
+	numero_depto int,
+	numero_projeto int
+)
+
+CREATE TABLE HISTORICO_SALARIO (
+	rg varchar(7), 
+	dat_ini_sal Date,
+	dat_fim_sal Date,
+	salario float
+)
+
+ALTER TABLE PROJETO DROP localizacao
+
+ALTER TABLE PROJETO ADD COLUMN localidade varchar(50)
+
+ALTER TABLE PROJETO ADD COLUMN logico boolean
+
+ALTER TABLE EMPREGADO ADD funcao varchar(30)
+
+ALTER TABLE EMPREGADO RENAME COLUMN nome TO nome_completo 
+
+ALTER TABLE EMPREGADO DROP dat_init_sal
+
+ALTER TABLE DEPARTAMENTO ADD COLUMN descricao_departamento varchar(20)
+
+ALTER TABLE DEPARTAMENTO ADD COLUMN data_criacao Date
+
+ALTER TABLE DEPARTAMENTO RENAME COLUMN nome TO nome_departamento
+
+ALTER TABLE DEPARTAMENTO DROP data_criacao
+
+CREATE TABLE ALUNO (
+	codigo int,
+	nome varchar(50)
+	
+)
+
+ALTER TABLE ALUNO ALTER COLUMN codigo TYPE float, ALTER COLUMN nome TYPE varchar(30)
+
+DROP TABLE ALUNO
+
+ALTER TABLE HISTORICO_SALARIO DROP dat_ini_sal
+
+ALTER TABLE HISTORICO_SALARIO ADD COLUMN salario_anual_total float
+
+ALTER TABLE HISTORICO_SALARIO RENAME COLUMN salario TO salario_mensal
+
+ALTER TABLE EMPREGADO_PROJETO ADD COLUMN funcao varchar(30)
+
+ALTER TABLE EMPREGADO_PROJETO ADD COLUMN data_inicio Date
+
+ALTER TABLE EMPREGADO_PROJETO ADD COLUMN data_fim Date
+
+ALTER TABLE DEPARTAMENTO_PROJETO ADD COLUMN demanda_de_funcionarios varchar(30)
+
+ALTER TABLE DEPARTAMENTO_PROJETO ADD COLUMN horas_destinadas float
+
+ALTER TABLE DEPARTAMENTO_PROJETO RENAME COLUMN codigo TO numero
