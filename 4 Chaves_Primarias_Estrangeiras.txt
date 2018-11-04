@@ -1,0 +1,32 @@
+-- Exercícios de BD I: Create, Alter e Drop
+-- Anne Caroline Silva 20141BSI0345
+-- Data: 04/11/2018
+
+
+ALTER TABLE PROJETO ADD PRIMARY KEY (nome);
+-- Foi possível definir nome como chave primária mas não é a escolha mais inteligente. O mais correto é escolher numero, pois é um identificador único
+
+ALTER TABLE EMPREGADO ADD PRIMARY KEY (cpf);
+
+ALTER TABLE DEPARTAMENTO ADD PRIMARY KEY (numero);
+
+ALTER TABLE DEPENDENTE ADD PRIMARY KEY (nome_dependente);
+
+ALTER TABLE DEPARTAMENTO_PROJETO ADD PRIMARY KEY (codigo);
+
+-- 1.f. Não foi possível definir rg_empregado como chave primária pois existem valores que podem ser repetidos. Melhor escolher codigo como chave primária
+
+ALTER TABLE PROJETO DROP CONSTRAINT projeto_pkey;
+
+ALTER TABLE PROJETO ADD PRIMARY KEY (numero);
+
+ALTER TABLE EMPREGADO DROP CONSTRAINT empregado_pkey;
+
+ALTER TABLE EMPREGADO ADD PRIMARY KEY (rg);
+
+ALTER TABLE DEPENDENTE DROP CONSTRAINT dependente_pkey;
+
+ALTER TABLE DEPENDENTE ADD PRIMARY KEY (codigo);
+
+ALTER TABLE EMPREGADO_PROJETO ADD PRIMARY KEY (codigo);
+
