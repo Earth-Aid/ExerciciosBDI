@@ -1,0 +1,97 @@
+-- Exercícios de BD I: Operadores Lógicos, datas, like e renomear
+-- Anne Caroline Silva 20141BSI0345
+-- Data: 16/11/2018
+
+
+SELECT nome, localizacao FROM PROJETO WHERE localizacao = 'Vitória'
+
+SELECT nome, localizacao, numero FROM PROJETO WHERE numero >= 5 AND numero < 25
+
+SELECT * FROM EMPREGADO WHERE rg_supervisor = '2020' AND salario > 2800.0
+
+SELECT numero, nome AS Nome_Projeto FROM PROJETO WHERE numero > 5 AND numero < 20
+
+SELECT numero, nome AS "Nome do Projeto" FROM PROJETO WHERE numero > 5 AND numero < 20
+
+SELECT concat(nome, ' - ', localizacao) AS "Nome e Localidade do Projeto" FROM PROJETO
+
+SELECT nome, salario, (salario + (salario * 0.1)) AS "Salario com acrescimo" FROM EMPREGADO
+
+SELECT nome, salario, (salario + 500.0) AS "Salario com acrescimo" FROM EMPREGADO
+
+SELECT salario, (salario / 2.0) AS "Parcela do 13º" FROM EMPREGADO
+
+SELECT salario, (salario - 1000.0) AS "Salário Reduzido" FROM EMPREGADO
+
+SELECT salario, ((salario * salario) - (5 * salario) - 100.0) / 100.0 AS "Salário Reduzido" FROM EMPREGADO -- tá errado
+
+SELECT * FROM DEPARTAMENTO WHERE rg_gerente is NULL OR nome = 'Contabilidade'
+
+SELECT * FROM DEPARTAMENTO WHERE numero > 1 AND rg_gerente is not NULL
+
+SELECT * FROM DEPENDENTE WHERE rg_responsavel <> '1010' AND sexo = 'f'
+
+SELECT * FROM DEPENDENTE WHERE rg_responsavel = '2020' OR rg_responsavel = '8080' 
+
+SELECT * FROM DEPENDENTE WHERE rg_responsavel = '1010' AND nome_dependente = 'Jorge'
+
+SELECT * FROM DEPENDENTE WHERE nascimento > '1986-01-01' AND sexo = 'f' -- não sei se está certo
+
+SELECT nome, dat_ini_sal, (extract(year from current_date) - extract(year from dat_ini_sal)) AS "Tempo sem aumento" FROM EMPREGADO
+
+SELECT * FROM DEPENDENTE WHERE nome_dependente LIKE 'A%'
+
+SELECT * FROM DEPENDENTE WHERE nome_dependente LIKE '_a%'
+
+SELECT * FROM DEPENDENTE WHERE nome_dependente LIKE '%e'
+
+SELECT * FROM DEPENDENTE WHERE nome_dependente LIKE '%n%'
+
+SELECT * FROM DEPENDENTE WHERE nome_dependente ILIKE '%an%'
+
+SELECT * FROM EMPREGADO WHERE nome LIKE '%Luiz%'
+
+SELECT * FROM EMPREGADO WHERE nome LIKE '%Luiz%' AND salario > 2500.0
+
+SELECT * FROM EMPREGADO WHERE nome LIKE '%Luiz%' AND salario > 2500.0 AND rg_supervisor IS NOT NULL
+
+SELECT * FROM EMPREGADO WHERE nome LIKE '_____'
+
+INSERT INTO  EMPREGADO (rg, nome, cpf, depto, rg_supervisor, salario, dat_ini_sal) VALUES
+	('0000', 'Jenni', '99999', 1, '5050', 10000.0, '2018-01-11')
+	
+SELECT * FROM EMPREGADO WHERE nome LIKE '_____'
+-- aparece!
+
+SELECT * FROM EMPREGADO WHERE nome ILIKE 'j_____%'
+
+SELECT * FROM PROJETO WHERE nome ILIKE '_____' OR nome ILIKE 'p%'
+
+SELECT * FROM PROJETO WHERE nome ILIKE '_____' OR nome ILIKE '%c%'
+
+-- 13. Selecione todos os registros da tabela projeto que possuem nomes com
+-- exatamente cinco letras, tenham nomes que possuam a letra 'a' e localização
+-- que não contenha a palavra 'São'
+-- não sei fazer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
