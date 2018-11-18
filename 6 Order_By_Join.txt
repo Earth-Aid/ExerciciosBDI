@@ -1,0 +1,64 @@
+-- Exercícios de BD I: Order By e Join
+-- Anne Caroline Silva 20141BSI0345
+-- Data: 18/11/2018
+
+
+SELECT codigo, nome_dependente, relacao FROM DEPENDENTE ORDER BY nome_dependente 
+
+SELECT * FROM PROJETO ORDER BY localizacao 
+
+SELECT * FROM PROJETO ORDER BY nome asc, localizacao asc  -- nao entendi muito bem
+
+SELECT * FROM DEPENDENTE ORDER BY rg_responsavel desc, nome_dependente asc
+
+SELECT * FROM EMPREGADO WHERE salario > 2500.0 ORDER BY salario desc -- nao sei se está certo
+
+SELECT * FROM DEPARTAMENTO_PROJETO INNER JOIN PROJETO ON (departamento_projeto.numero_projeto = projeto.numero)
+
+SELECT EMPREGADO.nome, PROJETO.nome FROM EMPREGADO_PROJETO 
+INNER JOIN EMPREGADO ON (EMPREGADO_PROJETO.rg_empregado = EMPREGADO.rg)
+INNER JOIN PROJETO ON (EMPREGADO_PROJETO.numero_projeto = PROJETO.numero)
+
+SELECT EMPREGADO.nome AS "Nome Empregado", PROJETO.nome AS "Nome Projeto", EMPREGADO_PROJETO.horas AS "Horas" FROM EMPREGADO_PROJETO 
+INNER JOIN EMPREGADO ON (EMPREGADO_PROJETO.rg_empregado = EMPREGADO.rg)
+INNER JOIN PROJETO ON (EMPREGADO_PROJETO.numero_projeto = PROJETO.numero)
+
+SELECT DEPENDENTE.codigo AS "Código dependente", EMPREGADO.nome AS "Nome Empregado", DEPENDENTE.nome_dependente AS "Nome Dependente", DEPENDENTE.relacao AS "Relação" FROM DEPENDENTE 
+INNER JOIN EMPREGADO ON (DEPENDENTE.rg_responsavel = EMPREGADO.rg)
+ORDER BY empregado.nome
+
+SELECT EMPREGADO.nome, HISTORICO_SALARIO.dat_ini_sal, HISTORICO_SALARIO.dat_fim_sal, HISTORICO_SALARIO.salario FROM HISTORICO_SALARIO 
+INNER JOIN EMPREGADO ON (HISTORICO_SALARIO.rg = EMPREGADO.rg)
+
+SELECT EMPREGADO.nome AS "Funcionário", PROJETO.nome AS "Projeto", EMPREGADO_PROJETO.horas AS "Horas Trabalhadas" FROM EMPREGADO_PROJETO 
+INNER JOIN EMPREGADO ON (EMPREGADO_PROJETO.rg_empregado = EMPREGADO.rg)
+INNER JOIN PROJETO ON (EMPREGADO_PROJETO.numero_projeto = PROJETO.numero)
+WHERE PROJETO.nome = 'Financeiro'
+
+SELECT EMPREGADO.nome, HISTORICO_SALARIO.dat_ini_sal, HISTORICO_SALARIO.dat_fim_sal, HISTORICO_SALARIO.salario, DEPARTAMENTO.nome FROM EMPREGADO 
+INNER JOIN HISTORICO_SALARIO ON (EMPREGADO.rg = HISTORICO_SALARIO.rg)
+INNER JOIN DEPARTAMENTO ON (EMPREGADO.depto = DEPARTAMENTO.numero)
+
+SELECT EMPREGADO.nome, HISTORICO_SALARIO.dat_ini_sal, HISTORICO_SALARIO.dat_fim_sal, HISTORICO_SALARIO.salario, DEPARTAMENTO.nome FROM EMPREGADO 
+INNER JOIN HISTORICO_SALARIO ON (EMPREGADO.rg = HISTORICO_SALARIO.rg)
+INNER JOIN DEPARTAMENTO ON (EMPREGADO.depto = DEPARTAMENTO.numero)
+WHERE HISTORICO_SALARIO.salario > 2500.0
+ORDER BY HISTORICO_SALARIO.salario desc
+
+-- Crie uma junção que mostre todos empregados e seu histórico de salários (data
+-- inicial, data final e valor do salario), departamento de que faz parte, e projetos
+-- que participa, ordenado do maior para o menor salario com resultados apenas
+-- para os salários da tabela histórico salario maiores que 2000.
+
+-- Crie uma junção que mostre todos empregados e seu histórico de salários (data
+-- inicial, data final e valor do salario), departamento de que faz parte, e projetos
+-- que participa, ordenado do maior para o menor salario com resultados apenas
+-- para os salários da tabela histórico salario maiores que 2000 e menores que
+-- 4000com dependentes do sexo feminino.
+
+
+
+
+
+
+
